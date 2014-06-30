@@ -43,7 +43,7 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
 		edith_list_url = self.browser.current_url
 		self.assertRegex(edith_list_url, '/lists/.+')
-		self.check_for_row_in_list_table('1: Buy Peacock feathers')
+		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		
 		# There is still a text box inviting her to add another item. She
 		# enters "Use peacock feathers to make a fly" (Edith is very methodical)
@@ -53,7 +53,7 @@ class NewVisitorTest(LiveServerTestCase):
 		
 		# The page updates again, and now shows both items on her list
 		self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
-		self.check_for_row_in_list_table('1: Buy Peacock feathers')
+		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		
 		# Now a new user, Francis, comes along to the site
 		
@@ -72,7 +72,7 @@ class NewVisitorTest(LiveServerTestCase):
 		# less interesting than Edith...
 		inputbox = self.browser.find_element_by_id('id_new_item')
 		inputbox.send_keys('Buy milk')
-		inputbox.send_keys(Keys.Enter)
+		inputbox.send_keys(Keys.ENTER)
 		
 		# Francis gets his own unique URL
 		francis_list_url = self.browser.current_url
