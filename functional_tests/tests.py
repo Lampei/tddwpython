@@ -1,14 +1,15 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
 		self.browser.implicitly_wait(3)
 		
 	def tearDown(self):
+		self.browser.refresh()
 		self.browser.quit()
 		
 	def check_for_row_in_list_table(self, row_text):
@@ -93,7 +94,6 @@ class NewVisitorTest(LiveServerTestCase):
 		
 		# She starts a new list and sees the input is nicely centered
 		# there too
-		inputbox.send_keys('testing\n')
 		inputbox = self.browser.find_element_by_id('id_new_item')
 		self.assertAlmostEqual(
 			inputbox.location['x'] + inputbox.size['width'] / 2,
